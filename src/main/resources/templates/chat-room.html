@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Room</title>
+</head>
+<body>
+<h2>Chat Room: <span th:text="${room.roomName}"></span></h2>
+<h4>Name: <span id="username" th:text="${username}"></span></h4>
+
+<!-- 채팅 메시지 표시 영역 -->
+<ul id="messages"></ul>
+<!-- 메시지 입력 폼 -->
+<form id="message-form">
+    <input type="text" id="message-input" autocomplete="off">
+    <button type="submit">Send</button>
+</form>
+
+<!-- WebSocket 라이브러리 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script>
+    var stompClient = null;
+
+    function connect() {
+        var socket = new SockJS('/ws');
+        stompClient = Stomp.over(socket);
+
+        stompClient.connect({}, function(frame) {
+            console.log('Connected: ' + frame);
+            stompClient.subscribe('/topic/public', function(chatMessage) {
+                showMessage(JSON.parse(chatMessage.body));
+            });
+        });
+    }
+
+    function sendMessage() {
+        var messageInput = document.getElementById('message-input');
+        var message = messageInput.value.trim();
+        if (message && stompClient) {
+            var chatMessage = {
+                sender: getUsername(),
+                content: message,
+                type: 'CHAT'
+            };
+            stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+            messageInput.value = '';
+        }
+        return false;
+    }
+
+    function showMessage(message) {
+        var messageArea = document.getElementById('messages');
+        var messageElement = document.createElement('li');
+        messageElement.textContent = message.sender + ": " + message.content;
+        messageArea.appendChild(messageElement);
+    }
+
+    function getUsername() {
+        return document.getElementById('username').textContent;
+    }
+
+    document.getElementById('message-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        sendMessage();
+    });
+
+    connect();
+</script>
+</body>
+</html>

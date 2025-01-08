@@ -1,6 +1,9 @@
 package demo.example.pls.chat;
 
+<<<<<<< HEAD
 import demo.example.pls.authorization.User;
+=======
+>>>>>>> 25f939f14434565878bf3ab7ccabb1309cb09bb7
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,5 +18,8 @@ public class ChatRoom {
 
     @Column(unique = true)
     private String roomName;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 25f939f14434565878bf3ab7ccabb1309cb09bb7
 }

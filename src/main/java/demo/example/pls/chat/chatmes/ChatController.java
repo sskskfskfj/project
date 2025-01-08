@@ -16,6 +16,15 @@ public class ChatController {
     @Autowired
     private ChatMessageRepository chatMessageRepository;
 
+<<<<<<< HEAD
+=======
+    @GetMapping("/chatcontent")
+    public String showChatPage(Model model) {
+        model.addAttribute("messages", chatMessageRepository.findAll());
+        return "chat";
+    }
+
+>>>>>>> 25f939f14434565878bf3ab7ccabb1309cb09bb7
     @PostMapping("/send-message")
     public String sendMessage(@RequestParam("message") String message) {
         ChatMessage chatMessage = new ChatMessage();
@@ -24,7 +33,10 @@ public class ChatController {
 
         return "redirect:/chat";
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 25f939f14434565878bf3ab7ccabb1309cb09bb7
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {

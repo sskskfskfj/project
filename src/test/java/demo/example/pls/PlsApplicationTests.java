@@ -10,6 +10,9 @@ class PlsApplicationTests {
 	void contextLoads() {
 	}
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 25f939f14434565878bf3ab7ccabb1309cb09bb7
 }

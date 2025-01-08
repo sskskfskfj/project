@@ -20,5 +20,8 @@ public class User {
 
     @Column(unique = true)
     private String email;
+<<<<<<< HEAD
     private Long roomId;
+=======
+>>>>>>> 25f939f14434565878bf3ab7ccabb1309cb09bb7
 }

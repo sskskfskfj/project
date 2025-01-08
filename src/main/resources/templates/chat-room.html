@@ -6,7 +6,11 @@
 </head>
 <body>
 <h2>Chat Room: <span th:text="${room.roomName}"></span></h2>
+<<<<<<< HEAD
 <h4>Name: <span id="username" th:text="${username}"></span></h4>
+=======
+<span id="username" th:text="${username}"></span>
+>>>>>>> 25f939f14434565878bf3ab7ccabb1309cb09bb7
 
 <!-- 채팅 메시지 표시 영역 -->
 <ul id="messages"></ul>
@@ -19,6 +23,10 @@
 <!-- WebSocket 라이브러리 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<<<<<<< HEAD
+=======
+<!-- 채팅 스크립트 -->
+>>>>>>> 25f939f14434565878bf3ab7ccabb1309cb09bb7
 <script>
     var stompClient = null;
 

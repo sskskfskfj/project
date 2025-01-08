@@ -7,8 +7,13 @@
 <body>
 <h2>Chat Rooms</h2>
 <ul>
+<<<<<<< HEAD
     <li th:each="chatRoom : ${rooms}">
         <a th:href="@{room/{roomId}(roomId=${chatRoom.id})}" th:text="${chatRoom.roomName}"></a>
+=======
+    <li th:each="chatRoom : ${chatRooms}">
+        <a th:href="@{chat/{roomId}(roomId=${chatRoom.id})}" th:text="${chatRoom.roomName}"></a>
+>>>>>>> 25f939f14434565878bf3ab7ccabb1309cb09bb7
     </li>
 </ul>
 <h3>Create New Chat Room</h3>
